@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ulearning_app/common/routes/names.dart';
 import 'package:ulearning_app/pages/common_widgets.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
 import 'package:ulearning_app/pages/sign_in/sign_in_controller.dart';
@@ -80,7 +81,8 @@ class _SignInState extends State<SignIn> {
                               'register',
                               () {
                                 print('going to register screen');
-                                Navigator.of(context).pushNamed("register");
+                                Navigator.of(context)
+                                    .pushNamed(AppRoutes.REGISTER);
                               },
                             ),
                           ],
