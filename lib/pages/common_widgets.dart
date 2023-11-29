@@ -80,19 +80,20 @@ Widget reusableText(String text) {
   );
 }
 
-Widget buildTextField(String hintText, String textType, String iconName,
-    void Function(String value)? onChanged) {
+Widget buildTextField({
+  String? hintText,
+  String? textType,
+  String? iconName,
+  TextInputAction? textInputAction = TextInputAction.next,
+  void Function(String value)? onChanged,
+}) {
   bool obscureText = true;
-  // void _toggle() {
-  //   setState(() {
-  //     obscureText = !obscureText;
-  //   });
-  // }
 
   return TextField(
     onChanged: onChanged,
     focusNode: FocusNode(),
     autocorrect: false,
+    textInputAction: textInputAction,
     obscureText: textType == 'password' ? obscureText : false,
     keyboardType: textType == 'email'
         ? TextInputType.emailAddress
@@ -129,7 +130,9 @@ Widget buildTextField(String hintText, String textType, String iconName,
           : null,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(15.r)),
-        borderSide: const BorderSide(width: 1, color: Colors.black),
+        borderSide: BorderSide(
+            width: 0.2,
+            color: AppColors.primaryFourElementText.withOpacity(0.2)),
       ),
     ),
   );

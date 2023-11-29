@@ -48,10 +48,10 @@ class _RegisterState extends State<Register> {
                                   children: [
                                     reusableText('User name'),
                                     buildTextField(
-                                      'Enter your user name',
-                                      'name',
-                                      'user',
-                                      (value) {
+                                      hintText: 'Enter your user name',
+                                      textType: 'name',
+                                      iconName: 'user',
+                                      onChanged: (value) {
                                         context
                                             .read<RegisterBloc>()
                                             .add(UsernameEvent(value));
@@ -59,10 +59,10 @@ class _RegisterState extends State<Register> {
                                     ),
                                     reusableText('E-mail'),
                                     buildTextField(
-                                      'Enter your email address',
-                                      'email',
-                                      'user',
-                                      (value) {
+                                      hintText: 'Enter your email address',
+                                      textType: 'email',
+                                      iconName: 'user',
+                                      onChanged: (value) {
                                         context
                                             .read<RegisterBloc>()
                                             .add(EmailEvent(value));
@@ -70,10 +70,10 @@ class _RegisterState extends State<Register> {
                                     ),
                                     reusableText('Password'),
                                     buildTextField(
-                                      'Enter your password',
-                                      'password',
-                                      'lock',
-                                      (value) {
+                                      hintText: 'Enter your password',
+                                      textType: 'rePassword',
+                                      iconName: 'lock',
+                                      onChanged: (value) {
                                         context
                                             .read<RegisterBloc>()
                                             .add(PasswordEvent(value));
@@ -81,10 +81,10 @@ class _RegisterState extends State<Register> {
                                     ),
                                     reusableText('Confirm Password'),
                                     buildTextField(
-                                      'Enter your confirm password',
-                                      'password',
-                                      'lock',
-                                      (value) {
+                                      hintText: 'Enter your confirm password',
+                                      textType: 'password',
+                                      iconName: 'lock',
+                                      onChanged: (value) {
                                         context
                                             .read<RegisterBloc>()
                                             .add(RePasswordEvent(value));

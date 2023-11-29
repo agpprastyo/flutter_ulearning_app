@@ -49,19 +49,27 @@ class _SignInState extends State<SignIn> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     reusableText('E-mail'),
-                                    buildTextField('Enter your email address',
-                                        'email', 'user', (value) {
-                                      context
-                                          .read<SignInBloc>()
-                                          .add(EmailEvent(value));
-                                    }),
+                                    buildTextField(
+                                      hintText: 'Enter your email address',
+                                      textType: 'email',
+                                      iconName: 'user',
+                                      onChanged: (value) {
+                                        context
+                                            .read<SignInBloc>()
+                                            .add(EmailEvent(value));
+                                      },
+                                    ),
                                     reusableText('Password'),
-                                    buildTextField('Enter your password',
-                                        'password', 'lock', (value) {
-                                      context
-                                          .read<SignInBloc>()
-                                          .add(PasswordEvent(value));
-                                    }),
+                                    buildTextField(
+                                      hintText: 'Enter your password',
+                                      textType: 'password',
+                                      iconName: 'lock',
+                                      onChanged: (value) {
+                                        context
+                                            .read<SignInBloc>()
+                                            .add(PasswordEvent(value));
+                                      },
+                                    ),
                                     forgotPassword(),
                                   ],
                                 ),

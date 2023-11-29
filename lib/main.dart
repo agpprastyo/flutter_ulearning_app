@@ -1,21 +1,13 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/routes/pages.dart';
 import 'package:ulearning_app/common/values/color.dart';
-import 'package:ulearning_app/firebase_options.dart';
-import 'package:ulearning_app/pages/application/application_page.dart';
+import 'package:ulearning_app/global.dart';
 import 'package:ulearning_app/common/routes/bloc_providers.dart';
-import 'package:ulearning_app/pages/register/register.dart';
-import 'package:ulearning_app/pages/sign_in/sign_in.dart';
-import 'package:ulearning_app/pages/welcome/welcome.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Global.init();
 
   runApp(const MyApp());
 }
@@ -27,7 +19,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: AppBlocProviders.allBlocProviders,
+      // providers: AppBlocProviders.allBlocProviders,
+      providers: [...AppPages.allBlocProviders(context)],
       child: ScreenUtilInit(
           designSize: const Size(375, 812),
           minTextAdapt: true,

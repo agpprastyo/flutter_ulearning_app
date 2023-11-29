@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/routes/names.dart';
 import 'package:ulearning_app/common/values/color.dart';
+import 'package:ulearning_app/common/values/constants.dart';
+import 'package:ulearning_app/global.dart';
 import 'package:ulearning_app/pages/welcome/bloc/welcome_bloc.dart';
 
 class Welcome extends StatefulWidget {
@@ -130,6 +132,10 @@ class _WelcomeState extends State<Welcome> {
               //   MaterialPageRoute(
               //       builder: (context) => const MyHomePage(title: 'title')),
               // );
+              Global.storageService
+                  .setBool(AppConstants.STORAGE_DEVICE_OPEN_FIRST_TIME, true);
+              print(
+                  'The value is ${Global.storageService.getDeviceFirstOpen()}');
               Navigator.of(context)
                   .pushNamedAndRemoveUntil(AppRoutes.SIGN_IN, (route) => false);
             }

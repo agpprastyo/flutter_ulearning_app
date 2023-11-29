@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ulearning_app/common/routes/names.dart';
+import 'package:ulearning_app/common/values/constants.dart';
 import 'package:ulearning_app/common/widgets/flutter_toast.dart';
+import 'package:ulearning_app/global.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
 
 class SignInController {
@@ -49,6 +52,10 @@ class SignInController {
           var user = credential.user;
           if (user != null) {
             print('user is $user');
+            Global.storageService
+                .setString(AppConstants.STORAGE_USER_TOKEN_KEY, '12345678');
+            Navigator.of(context).pushNamedAndRemoveUntil(
+                AppRoutes.APPLICATION, (route) => false);
             // we got verified from firebase
           } else {
             toastInfo(message: 'You\'re email address does not exist');

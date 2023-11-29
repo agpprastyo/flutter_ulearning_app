@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ulearning_app/common/routes/names.dart';
+import 'package:ulearning_app/global.dart';
+import 'package:ulearning_app/pages/application/application_page.dart';
+import 'package:ulearning_app/pages/application/bloc/app_bloc.dart';
 import 'package:ulearning_app/pages/register/bloc/register_bloc.dart';
 import 'package:ulearning_app/pages/register/register.dart';
 import 'package:ulearning_app/pages/sign_in/bloc/sign_in_bloc.dart';
@@ -30,25 +33,34 @@ class AppPages {
       ),
       PageEntity(
         route: AppRoutes.APPLICATION,
-        page: const Welcome(),
-        // bloc: WelcomeBloc(),
+        page: const ApplicationPage(),
+        bloc: BlocProvider(create: (_) => AppBloc()),
       ),
     ];
   }
 
-  // static List<dynamic> allBlocProviders(BuildContext context) {
-  //   List<dynamic> blocProviders = <dynamic>[];
-  //   for (var bloc in routes()) {
-  //     blocProviders.add(bloc.bloc);
-  //   }
-  //   return blocProviders;
-  // }
+  static List<dynamic> allBlocProviders(BuildContext context) {
+    List<dynamic> blocProviders = <dynamic>[];
+    for (var bloc in routes()) {
+      blocProviders.add(bloc.bloc);
+    }
+    return blocProviders;
+  }
 
   MaterialPageRoute GenerateRouteSettings(RouteSettings settings) {
     if (settings.name != null) {
       var result = routes().where((element) => element.route == settings.name);
       if (result.isNotEmpty) {
-        print('valid route: ${result.first.route}');
+        bool deviceFirstOpen = Global.storageService.getDeviceFirstOpen();
+        if (result.first.route == AppRoutes.INITIAL && deviceFirstOpen) {
+          bool isLogin = Global.storageService.getIsLogin();
+          if (isLogin) {
+            return MaterialPageRoute(
+                builder: (_) => const ApplicationPage(), settings: settings);
+          }
+          return MaterialPageRoute(
+              builder: (_) => const SignIn(), settings: settings);
+        }
         return MaterialPageRoute(
           builder: (_) => result.first.page,
           settings: settings,
@@ -56,7 +68,8 @@ class AppPages {
       }
     }
     print('invalid route: ${settings.name}');
-    return MaterialPageRoute(builder: (_) => SignIn(), settings: settings);
+    return MaterialPageRoute(
+        builder: (_) => const SignIn(), settings: settings);
   }
 }
 
