@@ -39,7 +39,8 @@ class MyApp extends StatelessWidget {
                       fontSize: 16.sp,
                       fontWeight: FontWeight.normal),
                 ),
-                colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+                colorScheme:
+                    ColorScheme.fromSeed(seedColor: AppColors.primaryElement),
                 useMaterial3: true,
               ),
               // home: const Welcome(),
