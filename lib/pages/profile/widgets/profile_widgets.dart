@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/routes/names.dart';
 import 'package:ulearning_app/common/values/color.dart';
+import 'package:ulearning_app/common/widgets/base_text_widget.dart';
 
 AppBar buildAppBar() {
   return AppBar(
@@ -19,14 +20,7 @@ AppBar buildAppBar() {
       ),
     ),
     centerTitle: true,
-    title: Text(
-      'Profile',
-      style: TextStyle(
-        color: AppColors.primaryText,
-        fontSize: 16.sp,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
+    title: reusableText(text: 'Profile'),
     actions: [
       Container(
         margin: EdgeInsets.only(right: 16.w),

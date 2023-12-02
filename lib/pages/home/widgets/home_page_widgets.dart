@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:ulearning_app/common/values/color.dart';
-import 'package:ulearning_app/pages/common_widgets.dart';
+import 'package:ulearning_app/common/widgets/base_text_widget.dart';
 import 'package:ulearning_app/pages/home/bloc/home_page_bloc.dart';
 
 AppBar buildAppBar() {
@@ -61,11 +61,13 @@ Widget homePageText(String text,
 }
 
 class MySearchView extends StatefulWidget {
+  const MySearchView({super.key});
+
   @override
-  _MySearchViewState createState() => _MySearchViewState();
+  MySearchViewState createState() => MySearchViewState();
 }
 
-class _MySearchViewState extends State<MySearchView> {
+class MySearchViewState extends State<MySearchView> {
   FocusNode focusNode = FocusNode();
   Color prefixIconColor = Colors.grey; // Default color
 
@@ -217,9 +219,9 @@ Widget menuView() {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            _reusableText(text: 'Choose your course'),
+            reusableText(text: 'Choose your course'),
             GestureDetector(
-              child: _reusableText(
+              child: reusableText(
                 text: 'See all',
                 color: AppColors.primaryThreeElementText,
                 fontWeight: FontWeight.normal,
@@ -253,21 +255,6 @@ Widget menuView() {
   );
 }
 
-Widget _reusableText(
-    {required String text,
-    Color color = AppColors.primaryText,
-    FontWeight fontWeight = FontWeight.bold,
-    int fontSize = 16}) {
-  return Text(
-    text,
-    style: TextStyle(
-      color: color,
-      fontWeight: fontWeight,
-      fontSize: fontSize.sp,
-    ),
-  );
-}
-
 Widget _reusableMenuText(
     {required String menuText,
     Color textColor = AppColors.primaryElementText,
@@ -284,7 +271,7 @@ Widget _reusableMenuText(
       top: 2.h,
       bottom: 2.h,
     ),
-    child: _reusableText(
+    child: reusableText(
         fontSize: 14,
         text: menuText,
         color: textColor,
